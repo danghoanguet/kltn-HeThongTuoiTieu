@@ -20,7 +20,9 @@ class ColorsConstant {
   static const Color red = Color(0xffFF123D);
   static const Color green = Color(0xff00B42A);
   static const Color gray1 = Color(0xff8B96AA);
-
+  static const kPrimaryColor = Color(0xFF0C9869);
+  static const kTextColor = Color(0xFF3C4046);
+  static const kBackgroundColor = Color(0xFFF9F8FD);
   static const greenPrimaryColor = Color(0XFF24CB4C);
   static const greenSecondaryColor = Color(0XFFBBEFC7);
   static const pinkPrimaryColor = Color(0XFFFF2575);

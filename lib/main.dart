@@ -5,8 +5,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kltn/view/screens/connecting_screen.dart';
+import 'package:kltn/view/screens/dashboard.dart';
 import 'package:kltn/view/screens/home_screen.dart';
+import 'package:kltn/view/screens/splash_screen.dart';
 
+import 'common/constants/colors_constant.dart';
 import 'data/model/WifiModel.dart';
 import 'common/constants/dimens_constant.dart';
 import 'firebase_options.dart';
@@ -27,11 +30,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       debugShowCheckedModeBanner: false,
+      title: 'KLTN',
+      theme: ThemeData(
+        scaffoldBackgroundColor: ColorsConstant.kBackgroundColor,
+        primaryColor: ColorsConstant.kPrimaryColor,
+        textTheme: Theme.of(context)
+            .textTheme
+            .apply(bodyColor: ColorsConstant.kTextColor),
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
       home: FutureBuilder(
         future: _fbApp,
         builder: (context, snapshot) {
@@ -89,9 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
         splitScreenMode: true,
         builder: (context, child) {
           return Scaffold(
-            appBar: AppBar(
-              title: Text(widget.title),
-            ),
             body: StreamBuilder<DatabaseEvent>(
               stream: _database.child("Wifi").onValue,
               builder: (context, snapshot) {
@@ -102,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           as Map<dynamic, dynamic>));
                   print("status: ${wifiModel.wifiStatus}\n");
                   if (wifiModel.wifiStatus == "Connected") {
-                    return HomeScreen();
+                    return SplashScreen();
                   } else {
                     return ConnectingScreen();
                   }

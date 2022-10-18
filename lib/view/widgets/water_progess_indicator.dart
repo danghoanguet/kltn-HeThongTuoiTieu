@@ -10,6 +10,7 @@ class WaterProgressIndicator extends StatefulWidget {
   final double progress;
   final Color primaryColor;
   final Color secondaryColor;
+  final double? width;
 
   const WaterProgressIndicator({
     Key? key,
@@ -17,6 +18,7 @@ class WaterProgressIndicator extends StatefulWidget {
     required this.progress,
     required this.primaryColor,
     required this.secondaryColor,
+    this.width,
   }) : super(key: key);
 
   @override
@@ -31,7 +33,7 @@ class _WaterProgressIndicatorState extends State<WaterProgressIndicator> {
     return ClipRRect(
       borderRadius: borderRadius,
       child: Container(
-        width: widget.size,
+        width: widget.width != null ? widget.width : widget.size,
         height: widget.size,
         decoration: BoxDecoration(
           color: ColorsConstant.white,
