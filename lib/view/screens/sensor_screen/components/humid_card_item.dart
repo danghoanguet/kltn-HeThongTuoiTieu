@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kltn/view/widgets/temperature_bar.dart';
+import 'package:kltn/view/screens/sensor_screen/components/temperature_bar.dart';
+import 'package:kltn/view/widgets/water_progess_indicator.dart';
 
-import '../../common/constants/colors_constant.dart';
+import '../../../../common/constants/colors_constant.dart';
 
-class TemperatureCardItem extends StatelessWidget {
+class HumidCardItem extends StatelessWidget {
   final String value;
   final String threshold;
 
-  const TemperatureCardItem(
+  const HumidCardItem(
       {super.key, required this.value, required this.threshold});
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final progress = double.parse(value) / double.parse(threshold);
     return Container(
       width: double.infinity,
       // height: size.height * 0.2,
@@ -47,7 +49,7 @@ class TemperatureCardItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Temperature",
+                "Humid",
                 style: TextStyle(
                   color: ColorsConstant.borderTextFieldColor,
                   fontWeight: FontWeight.bold,
@@ -57,7 +59,7 @@ class TemperatureCardItem extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    isGoodCondition() ? "GOOD" : "NEED COOLDOWN",
+                    isGoodCondition() ? "GOOD" : "NEED WATERING",
                     style: TextStyle(
                       color: isGoodCondition()
                           ? ColorsConstant.greenPrimaryColor
@@ -75,8 +77,8 @@ class TemperatureCardItem extends StatelessWidget {
                           color: Colors.green,
                         )
                       : Icon(
-                          Icons.warning,
-                          color: Colors.red,
+                          Icons.water_drop,
+                          color: Colors.blue,
                         ),
                 ],
               ),
@@ -97,7 +99,7 @@ class TemperatureCardItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: ColorsConstant.red.withOpacity(0.5),
+                    color: ColorsConstant.bluePrimaryColor.withOpacity(0.5),
                     width: 2,
                   ),
                   gradient: LinearGradient(
@@ -107,7 +109,7 @@ class TemperatureCardItem extends StatelessWidget {
                   ),
                 ),
                 child: Image.asset(
-                  "assets/images/temperature.png",
+                  "assets/images/water.png",
                   color: Colors.white,
                 ),
               ),
@@ -115,22 +117,31 @@ class TemperatureCardItem extends StatelessWidget {
                 width: 15,
               ),
               Text(
-                "${value} ".split(".")[0] + "/${threshold} \u2103",
+                "${value}".split(".")[0] + "/${threshold}%",
                 style: GoogleFonts.aBeeZee(
                   color: ColorsConstant.borderTextFieldColor,
                   fontWeight: FontWeight.w900,
                   fontSize: 20,
                 ),
               ),
+              Spacer(),
+              Expanded(
+                child: WaterProgressIndicator(
+                    size: 50,
+                    progress: progress,
+                    primaryColor: ColorsConstant.btnGradientEnd1,
+                    secondaryColor: ColorsConstant.btnGradientStart1),
+              ),
+              // Spacer(),
             ],
           ),
           SizedBox(
             height: 20,
           ),
-          TemperatureBar(value: (double.parse(value) / 100)),
-          SizedBox(
-            height: 20,
-          ),
+          //TemperatureBar(value: (double.parse(value) / 100)),
+          // SizedBox(
+          //   height: 20,
+          // ),
         ],
       ),
     );
@@ -138,9 +149,10 @@ class TemperatureCardItem extends StatelessWidget {
 
   bool isGoodCondition() {
     final val = double.parse(value);
-    if (val > 0 && val < double.parse(threshold))
-      return true;
-    else if (val > double.parse(threshold)) return false;
+    print("$val\n${threshold}");
+    if (val > 0 && val <= double.parse(threshold))
+      return false;
+    else if (val > double.parse(threshold)) return true;
     return false;
   }
 }

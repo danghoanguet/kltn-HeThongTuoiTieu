@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kltn/view/screens/about_screen.dart';
-import 'package:kltn/view/screens/sensor_screen.dart';
+import 'package:kltn/view/screens/sensor_screen/sensor_screen.dart';
 import 'package:kltn/view/screens/pump_controller_screen/pump_controller_screen.dart';
 import 'package:kltn/view/screens/pump_screen.dart';
-import 'package:kltn/view/screens/threshold_screen.dart';
+import 'package:kltn/view/screens/threshold_screen/threshold_screen.dart';
 
 import '../../common/constants/assets_constant.dart';
 import '../../common/constants/colors_constant.dart';
 import '../widgets/custom_appbar.dart';
-import 'over_view_screen.dart';
+import 'overview_screen/over_view_screen.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);

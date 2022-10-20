@@ -13,6 +13,7 @@ class LabelItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
           child: Image.asset(

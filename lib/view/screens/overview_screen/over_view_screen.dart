@@ -7,13 +7,13 @@ import 'package:kltn/data/model/DHTModel.dart';
 import 'package:kltn/data/model/PumpModel.dart';
 import 'package:kltn/data/model/threshold_model.dart';
 
-import '../../common/constants/colors_constant.dart';
-import '../../data/model/WifiModel.dart';
-import '../widgets/wifi_card.dart';
-import '../widgets/header_with_seachbox.dart';
-import '../widgets/label_item.dart';
-import '../widgets/sensor_water_item.dart';
-import '../widgets/water_progess_indicator.dart';
+import '../../../common/constants/colors_constant.dart';
+import '../../../data/model/WifiModel.dart';
+import 'components/wifi_card.dart';
+import 'components/header_with_water_indicator.dart';
+import '../../widgets/label_item.dart';
+import '../../widgets/sensor_water_item.dart';
+import '../../widgets/water_progess_indicator.dart';
 
 class OverViewScreen extends StatefulWidget {
   const OverViewScreen({Key? key}) : super(key: key);
@@ -95,7 +95,7 @@ class _OverViewScreenState extends State<OverViewScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              HeaderWithSearchBox(size: size),
+              HeaderWithWaterIndicator(size: size),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

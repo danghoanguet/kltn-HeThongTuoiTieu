@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../common/constants/colors_constant.dart';
-import '../../data/model/WifiModel.dart';
+import '../../../../common/constants/colors_constant.dart';
+import '../../../../data/model/WifiModel.dart';
 
 class WifiCard extends StatelessWidget {
   const WifiCard({

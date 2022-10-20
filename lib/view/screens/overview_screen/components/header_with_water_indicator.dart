@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kltn/common/constants/colors_constant.dart';
 import 'package:kltn/view/widgets/water_progess_indicator.dart';
-import '../../common/constants/dimens_constant.dart';
+import '../../../../common/constants/dimens_constant.dart';
 
-class HeaderWithSearchBox extends StatelessWidget {
-  HeaderWithSearchBox({
+class HeaderWithWaterIndicator extends StatelessWidget {
+  HeaderWithWaterIndicator({
     Key? key,
     required this.size,
   }) : super(key: key);
@@ -16,7 +16,6 @@ class HeaderWithSearchBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       //margin: EdgeInsets.only(bottom: DimensConstant.kDefaultPadding * 1.5),
-      // It will cover 20% of our total height
       height: size.height * 0.1,
       margin: EdgeInsets.only(bottom: 20),
       child: Stack(

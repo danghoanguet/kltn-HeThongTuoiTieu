@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kltn/view/widgets/temperature_bar.dart';
+import 'package:kltn/view/screens/sensor_screen/components/temperature_bar.dart';
 import 'package:kltn/view/widgets/water_progess_indicator.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-import '../../common/constants/colors_constant.dart';
+import '../../../../common/constants/colors_constant.dart';
 
 class SoilCardItem extends StatelessWidget {
   final String value;

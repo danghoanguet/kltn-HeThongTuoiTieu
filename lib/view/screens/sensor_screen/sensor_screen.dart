@@ -5,13 +5,13 @@ import 'package:kltn/data/model/DHTModel.dart';
 import 'package:kltn/data/model/PumpModel.dart';
 import 'package:kltn/data/model/threshold_model.dart';
 
-import '../../common/constants/colors_constant.dart';
-import '../widgets/humid_card_item.dart';
-import '../widgets/header_with_seachbox.dart';
-import '../widgets/label_item.dart';
-import '../widgets/temperature_card_item.dart';
-import '../widgets/sensor_water_item.dart';
-import '../widgets/soil_card_item.dart';
+import '../../../common/constants/colors_constant.dart';
+import 'components/humid_card_item.dart';
+import '../overview_screen/components/header_with_water_indicator.dart';
+import '../../widgets/label_item.dart';
+import 'components/temperature_card_item.dart';
+import '../../widgets/sensor_water_item.dart';
+import 'components/soil_card_item.dart';
 
 class SensorScreen extends StatefulWidget {
   const SensorScreen({Key? key}) : super(key: key);

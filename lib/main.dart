@@ -14,7 +14,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Firebase.apps.isNotEmpty) {
     await Firebase.initializeApp(
-      name: "KLTN-HeThongTuoiTieu",
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }

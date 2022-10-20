@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kltn/common/constants/colors_constant.dart';
-import 'package:kltn/view/widgets/humid_card_item.dart';
+import 'package:kltn/view/screens/sensor_screen/components/humid_card_item.dart';
 
 import '../../../data/model/PumpModel.dart';
-import '../../widgets/temperature_card_item.dart';
-import '../../widgets/soil_card_item.dart';
-import '../../widgets/temperature_bar.dart';
+import '../sensor_screen/components/temperature_card_item.dart';
+import '../sensor_screen/components/soil_card_item.dart';
+import '../sensor_screen/components/temperature_bar.dart';
 import '../../widgets/water_progess_indicator.dart';
 import 'components/mode_panel.dart';
 import 'components/slider_panel.dart';
