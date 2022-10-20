@@ -6,9 +6,12 @@ import 'package:kltn/data/model/PumpModel.dart';
 import 'package:kltn/data/model/threshold_model.dart';
 
 import '../../common/constants/colors_constant.dart';
+import '../widgets/humid_card_item.dart';
 import '../widgets/header_with_seachbox.dart';
 import '../widgets/label_item.dart';
+import '../widgets/temperature_card_item.dart';
 import '../widgets/sensor_water_item.dart';
+import '../widgets/soil_card_item.dart';
 
 class SensorScreen extends StatefulWidget {
   const SensorScreen({Key? key}) : super(key: key);
@@ -100,51 +103,70 @@ class _SensorScreenState extends State<SensorScreen> {
                                       ?.snapshot
                                       .value as Map<dynamic, dynamic>));
 
-                              return LayoutBuilder(
-                                builder: (context, constraints) {
-                                  return Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SensorWaterItem(
-                                          label: "Temperature",
-                                          size: constraints.maxWidth / 3 - 30,
-                                          primaryColor:
-                                              ColorsConstant.pinkPrimaryColor,
-                                          secondaryColor:
-                                              ColorsConstant.pinkSecondaryColor,
-                                          textColor: Colors.deepOrange,
-                                          value: (double.parse(
-                                              _dHTModel.temp.split(".")[0])),
-                                          threshold: double.parse(
-                                              _thresholdModel.temp)),
-                                      SensorWaterItem(
-                                          label: "Humid",
-                                          size: constraints.maxWidth / 3 - 30,
-                                          primaryColor:
-                                              ColorsConstant.bluePrimaryColor,
-                                          secondaryColor:
-                                              ColorsConstant.blueSecondaryColor,
-                                          textColor: Colors.blueAccent,
-                                          value: (double.parse(
-                                              _dHTModel.humid.split(".")[0])),
-                                          threshold: double.parse(
-                                              _thresholdModel.humid)),
-                                      SensorWaterItem(
-                                          label: "Soil",
-                                          size: constraints.maxWidth / 3 - 30,
-                                          primaryColor:
-                                              ColorsConstant.yellowPrimaryColor,
-                                          secondaryColor: ColorsConstant
-                                              .yellowSecondaryColor,
-                                          textColor: Colors.brown,
-                                          value: (double.parse(
-                                              _dHTModel.soil.split(".")[0])),
-                                          threshold: double.parse(
-                                              _thresholdModel.soil)),
-                                    ],
-                                  );
-                                },
+                              // return LayoutBuilder(
+                              //   builder: (context, constraints) {
+                              //     return Row(
+                              //       mainAxisAlignment:
+                              //           MainAxisAlignment.spaceBetween,
+                              //       children: [
+                              //         SensorWaterItem(
+                              //             label: "Temperature",
+                              //             size: constraints.maxWidth / 3 - 30,
+                              //             primaryColor:
+                              //                 ColorsConstant.pinkPrimaryColor,
+                              //             secondaryColor:
+                              //                 ColorsConstant.pinkSecondaryColor,
+                              //             textColor: Colors.deepOrange,
+                              //             value: (double.parse(
+                              //                 _dHTModel.temp.split(".")[0])),
+                              //             threshold: double.parse(
+                              //                 _thresholdModel.temp)),
+                              //         SensorWaterItem(
+                              //             label: "Humid",
+                              //             size: constraints.maxWidth / 3 - 30,
+                              //             primaryColor:
+                              //                 ColorsConstant.bluePrimaryColor,
+                              //             secondaryColor:
+                              //                 ColorsConstant.blueSecondaryColor,
+                              //             textColor: Colors.blueAccent,
+                              //             value: (double.parse(
+                              //                 _dHTModel.humid.split(".")[0])),
+                              //             threshold: double.parse(
+                              //                 _thresholdModel.humid)),
+                              //         SensorWaterItem(
+                              //             label: "Soil",
+                              //             size: constraints.maxWidth / 3 - 30,
+                              //             primaryColor:
+                              //                 ColorsConstant.yellowPrimaryColor,
+                              //             secondaryColor: ColorsConstant
+                              //                 .yellowSecondaryColor,
+                              //             textColor: Colors.brown,
+                              //             value: (double.parse(
+                              //                 _dHTModel.soil.split(".")[0])),
+                              //             threshold: double.parse(
+                              //                 _thresholdModel.soil)),
+                              //       ],
+                              //     );
+                              //   },
+                              // );
+                              return Column(
+                                children: [
+                                  TemperatureCardItem(
+                                    value: _dHTModel.temp,
+                                    threshold: _thresholdModel.temp,
+                                  ),
+                                  SizedBox(height: 20.0),
+                                  HumidCardItem(
+                                    value: _dHTModel.humid,
+                                    threshold: _thresholdModel.humid,
+                                  ),
+                                  SizedBox(height: 20.0),
+                                  SoilCardItem(
+                                    value: _dHTModel.soil,
+                                    threshold: _thresholdModel.soil,
+                                  ),
+                                  SizedBox(height: 20.0),
+                                ],
                               );
                             } else {
                               return Center(
