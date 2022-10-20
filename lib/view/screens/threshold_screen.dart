@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
+import '../../common/constants/colors_constant.dart';
 import '../widgets/label_item.dart';
 
 class ThresholdScreen extends StatefulWidget {
@@ -25,83 +26,151 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
     super.dispose();
   }
 
+  AppBar buildAppBar() {
+    return AppBar(
+      backgroundColor: ColorsConstant.progressBarTrackColor,
+      elevation: 0,
+      leading: IconButton(
+        icon: Image.asset(
+          "assets/images/threshold.png",
+          color: Colors.white,
+        ),
+        onPressed: () {},
+      ),
+      title: Text(
+        "Set Threshold",
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
+    Size size = MediaQuery.of(context).size;
+
+    return Scaffold(
+      appBar: buildAppBar(),
+      body: Container(
+        height: double.infinity,
         padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-        child: Column(
-          children: [
-            LabelItem(
-              label: "SET THRESHOLD",
-              imageUrl: "assets/images/stat.png",
-              color: Colors.redAccent,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10),
-              width: double.infinity,
-              child: TextField(
-                onChanged: (_) => isValidated(),
-                controller: _nhietDoController,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(width: 3, color: Colors.deepOrange),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              // topRight: Radius.circular(50.0),
+              // topLeft: Radius.circular(50.0),
+              ),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: ColorsConstant.borderColors,
+          ),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              LabelItem(
+                label: "SET THRESHOLD",
+                imageUrl: "assets/images/stat.png",
+                color: ColorsConstant.kPrimaryColor,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                width: double.infinity,
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  onChanged: (_) => isValidated(),
+                  controller: _nhietDoController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide:
+                          BorderSide(width: 3, color: Colors.deepOrange),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 3, color: Colors.deepOrange),
+                    ),
+                    labelText: 'TEMPERATURE',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  labelText: 'TEMPERATURE',
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10),
-              width: double.infinity,
-              child: TextField(
-                onChanged: (_) => isValidated(),
-                controller: _doAmController,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(width: 3, color: Colors.lightBlue),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                width: double.infinity,
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  onChanged: (_) => isValidated(),
+                  controller: _doAmController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                          width: 3, color: ColorsConstant.bluePrimaryColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 3, color: ColorsConstant.bluePrimaryColor),
+                    ),
+                    labelText: 'HUMID',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  labelText: 'HUMID',
                 ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10),
-              width: double.infinity,
-              child: TextField(
-                onChanged: (_) => isValidated(),
-                onEditingComplete: _onSave,
-                controller: _doAmDatController,
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.done,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(width: 3, color: Colors.brown),
+              Container(
+                margin: EdgeInsets.only(bottom: 10),
+                width: double.infinity,
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  onChanged: (_) => isValidated(),
+                  onEditingComplete: _onSave,
+                  controller: _doAmDatController,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(width: 3, color: Colors.brown),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(width: 3, color: Colors.brown),
+                    ),
+                    labelText: 'SOIL',
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  labelText: 'SOIL',
                 ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
+              SizedBox(
+                height: 20,
+              ),
+              ElevatedButton(
                 onPressed: _isValidate == true ? _onSave : null,
-                child: Text("SAVE")),
-          ],
+                style: ElevatedButton.styleFrom(
+                    primary: ColorsConstant.kPrimaryColor),
+                child: Text(
+                  "SAVE",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

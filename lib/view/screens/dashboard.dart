@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kltn/view/screens/about_screen.dart';
-import 'package:kltn/view/screens/home_screen.dart';
+import 'package:kltn/view/screens/sensor_screen.dart';
+import 'package:kltn/view/screens/pump_controller_screen/pump_controller_screen.dart';
 import 'package:kltn/view/screens/pump_screen.dart';
 import 'package:kltn/view/screens/threshold_screen.dart';
 
@@ -30,13 +31,12 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       //appBar: CustomAppBar(),
-      appBar: buildAppBar(),
       body: IndexedStack(
         index: currentPageIndex,
-        children: const <Widget>[
+        children: <Widget>[
           OverViewScreen(),
           SensorScreen(),
-          PumpScreen(),
+          PumpController(),
           ThresholdScreen(),
         ],
       ),
@@ -45,7 +45,7 @@ class _DashboardState extends State<Dashboard> {
           left: 10 * 2,
           right: 10 * 2,
         ),
-        height: 70,
+        height: 50,
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -126,20 +126,6 @@ class _DashboardState extends State<Dashboard> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: ColorsConstant.kPrimaryColor,
-      elevation: 0,
-      leading: IconButton(
-        icon: SvgPicture.asset(
-          "assets/icons/menu.svg",
-          color: Colors.white,
-        ),
-        onPressed: () {},
       ),
     );
   }

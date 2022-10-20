@@ -31,4 +31,32 @@ class ColorsConstant {
   static const yellowSecondaryColor = Color(0XFFFFF0B5);
   static const bluePrimaryColor = Color(0XFF16AFFF);
   static const blueSecondaryColor = Color(0XFFABF2FF);
+
+  static final List<Color> conBackgroundColor = [
+    Color(0xFF353A40),
+    Color(0xFF16171B),
+  ];
+  static final List<Color> borderColors = [
+    Color(0xFF424750),
+    Color(0xFF202326),
+  ];
+  static final List<Color> progressBarBackground = [
+    Color(0xFF202428),
+    Color(0xFF131314),
+  ];
+  static final List<Color> progressBarColor = [
+    Color(0xff11A8FD),
+    Color(0xff005696),
+  ];
+  static final List<Color> progressBarSoilColor = [
+    Colors.brown,
+    Color.fromRGBO(139, 69, 19, 1),
+    Color.fromRGBO(128, 0, 0, 1),
+  ];
+  static final Color lightTextColor = Color(0xFF7F8489);
+  static final Color mainTextColor = Color(0xFFFDFDFD);
+  static final Color darkColor = Color(0xFF17181C);
+  static final Color progressShadowColor = Color(0xFF141415);
+  static final Color progressShadowColor2 = Color(0xFF485057);
+  static final Color progressBarTrackColor = Color(0xff1F2124);
 }

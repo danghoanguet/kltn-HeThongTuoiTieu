@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kltn/view/screens/connecting_screen.dart';
-import 'package:kltn/view/screens/dashboard.dart';
-import 'package:kltn/view/screens/home_screen.dart';
 import 'package:kltn/view/screens/splash_screen.dart';
 
 import 'common/constants/colors_constant.dart';
@@ -16,9 +12,13 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  if (Firebase.apps.isNotEmpty) {
+    await Firebase.initializeApp(
+      name: "KLTN-HeThongTuoiTieu",
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
   runApp(MyApp());
 }
 
