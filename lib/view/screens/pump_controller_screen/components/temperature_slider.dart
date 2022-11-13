@@ -68,19 +68,17 @@ class _PumpControlSliderState extends State<PumpControlSlider> {
           min: 0.0,
           max: 100.0,
           initialValue: double.parse(widget.pumpModel.state),
-          onChange: (double value) {},
-          onChangeStart: (double startValue) {},
-          onChangeEnd: (double value) async {
-            DatabaseReference _refControl =
-                FirebaseDatabase.instance.ref("CONTROL");
-            await _refControl.update({"State": value.round().toString()});
-          },
+          // onChange: (double value) {},
+          // onChangeEnd: (double value) async {
+          //   DatabaseReference _refControl =
+          //       FirebaseDatabase.instance.ref("CONTROL");
+          //   await _refControl.update({"State": value.round().toString()});
+          // },
           innerWidget: (double value) {
             return Center(
               child: Container(
-                width: 60.0,
-                height: 50.0,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Flexible(
                       child: Text(

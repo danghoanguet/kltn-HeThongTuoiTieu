@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kltn/view/screens/sensor_screen/components/temperature_bar.dart';
 import 'package:kltn/view/widgets/water_progess_indicator.dart';
 
 import '../../../../common/constants/colors_constant.dart';
@@ -149,7 +147,6 @@ class HumidCardItem extends StatelessWidget {
 
   bool isGoodCondition() {
     final val = double.parse(value);
-    print("$val\n${threshold}");
     if (val > 0 && val <= double.parse(threshold))
       return false;
     else if (val > double.parse(threshold)) return true;

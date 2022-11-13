@@ -128,7 +128,6 @@ class _OverViewScreenState extends State<OverViewScreen> {
                             final wifiModel = WifiModel.fromRTDB(
                                 Map<String, dynamic>.from(snapshot.data
                                     ?.snapshot.value as Map<dynamic, dynamic>));
-                            print("status: ${wifiModel.wifiStatus}\n");
                             return WifiCard(size: size, wifiModel: wifiModel);
                           } else {
                             return Center(
@@ -259,7 +258,7 @@ class _buildThresholdCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 5, right: 10, top: 5),
                   height: size.width * 0.1,
-                  width: size.width * 0.08,
+                  width: size.width * 0.07,
                   child: SvgPicture.asset("assets/icons/icon_2.svg"),
                 ),
                 Text(
@@ -293,7 +292,7 @@ class _buildThresholdCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 5, right: 10, top: 5),
                   height: size.width * 0.1,
-                  width: size.width * 0.08,
+                  width: size.width * 0.07,
                   child: SvgPicture.asset("assets/icons/icon_4.svg"),
                 ),
                 Text(
@@ -327,7 +326,7 @@ class _buildThresholdCard extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.only(left: 5, right: 10, top: 5),
                   height: size.width * 0.1,
-                  width: size.width * 0.08,
+                  width: size.width * 0.07,
                   child: SvgPicture.asset("assets/icons/icon_3.svg"),
                 ),
                 Text(
@@ -593,136 +592,132 @@ class _buildPumpCard extends StatelessWidget {
                 margin:
                     EdgeInsets.only(top: 15, left: 15, bottom: 10, right: 20),
                 child: WaterProgressIndicator(
-                    size: size.height * 0.3,
+                    size: size.height * 0.25,
                     progress: double.parse(_pumpModel.state) / 100,
                     width: 30,
                     primaryColor: ColorsConstant.bluePrimaryColor,
                     secondaryColor: ColorsConstant.blueSecondaryColor),
               ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(right: 8.0),
-                  child: Column(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 15),
-                        width: size.width * 0.25,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Capacity",
-                              style: GoogleFonts.aBeeZee(
-                                color: ColorsConstant.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                              ),
+              Padding(
+                padding: EdgeInsets.only(right: 8.0),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 10, right: 15),
+                      width: size.width * 0.25,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Capacity",
+                            style: GoogleFonts.aBeeZee(
+                              color: ColorsConstant.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.water_drop,
-                                  color: ColorsConstant.textBlue1,
-                                  size: 40,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "100%",
-                                    style: GoogleFonts.aBeeZee(
-                                      color: ColorsConstant.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.water_drop,
+                                color: ColorsConstant.textBlue1,
+                                size: 40,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  "100%",
+                                  style: GoogleFonts.aBeeZee(
+                                    color: ColorsConstant.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
                                   ),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      // SizedBox(
-                      //   height: 20,
-                      // ),
-                      Container(
-                        margin: EdgeInsets.only(right: 15),
-                        width: size.width * 0.25,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Power",
-                              style: GoogleFonts.aBeeZee(
-                                color: ColorsConstant.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
                               ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(right: 15),
+                      width: size.width * 0.25,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Power",
+                            style: GoogleFonts.aBeeZee(
+                              color: ColorsConstant.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Icon(
-                                  Icons.settings_power_sharp,
-                                  color: ColorsConstant.textBlue1,
-                                  size: 40,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "${_pumpModel.state}%",
-                                    style: GoogleFonts.aBeeZee(
-                                      color: ColorsConstant.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15,
-                                    ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.settings_power_sharp,
+                                color: ColorsConstant.textBlue1,
+                                size: 40,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  "${_pumpModel.state}%",
+                                  style: GoogleFonts.aBeeZee(
+                                    color: ColorsConstant.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
                                   ),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      // SizedBox(
-                      //   height: 20,
-                      // ),
-                      Container(
-                        margin: EdgeInsets.only(right: 15),
-                        width: size.width * 0.25,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Mode",
-                              style: GoogleFonts.aBeeZee(
-                                color: ColorsConstant.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
                               ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10, right: 15),
+                      width: size.width * 0.25,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Mode",
+                            style: GoogleFonts.aBeeZee(
+                              color: ColorsConstant.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Icon(
-                                  size: 40,
-                                  Icons.flash_on,
-                                  color: ColorsConstant.textBlue1,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    _pumpModel.control == "1"
-                                        ? "Manual"
-                                        : "Auto",
-                                    textAlign: TextAlign.end,
-                                    style: GoogleFonts.aBeeZee(
-                                      color: ColorsConstant.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Icon(
+                                size: 40,
+                                Icons.flash_on,
+                                color: ColorsConstant.textBlue1,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  _pumpModel.control == "1" ? "Manual" : "Auto",
+                                  textAlign: TextAlign.end,
+                                  style: GoogleFonts.aBeeZee(
+                                    color: ColorsConstant.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14,
                                   ),
                                 ),
-                              ],
-                            )
-                          ],
-                        ),
+                              ),
+                            ],
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

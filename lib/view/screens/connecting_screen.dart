@@ -12,7 +12,7 @@ class ConnectingScreen extends StatelessWidget {
     final slider = SleekCircularSlider(
         appearance: CircularSliderAppearance(
       spinnerMode: true,
-      size: 60,
+      size: 40,
       customColors: CustomSliderColors(
         progressBarColors: ColorsConstant.progressBarColor,
         gradientStartAngle: 180.0,
@@ -23,11 +23,12 @@ class ConnectingScreen extends StatelessWidget {
     ));
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(
-              "https://visme.co/blog/wp-content/uploads/2017/07/50-Beautiful-and-Minimalist-Presentation-Backgrounds-05.jpg"),
-          fit: BoxFit.cover,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: ColorsConstant.conBackgroundColor,
         ),
       ),
       child: Column(
@@ -38,7 +39,7 @@ class ConnectingScreen extends StatelessWidget {
             style: GoogleFonts.roboto(
               color: ColorsConstant.textBlue2,
               fontWeight: FontWeight.bold,
-              fontSize: 30,
+              fontSize: 25,
             ),
           ),
           SizedBox(

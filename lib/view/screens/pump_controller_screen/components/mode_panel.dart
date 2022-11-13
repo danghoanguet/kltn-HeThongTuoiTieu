@@ -96,11 +96,10 @@ class ModePanel extends StatelessWidget {
                 ),
                 onTab: isManual == false
                     ? (isManual) async {
-                        print("iwashere");
                         DatabaseReference _refControl =
                             FirebaseDatabase.instance.ref("CONTROL");
                         await _refControl
-                            .update({"Manual": "1", "State": "50"});
+                            .update({"Manual": "1", "State": "100"});
                       }
                     : (isManual) {},
                 isOn: pumpModel.control == "1" ? true : false,

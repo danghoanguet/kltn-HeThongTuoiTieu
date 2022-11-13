@@ -74,7 +74,7 @@ class WifiCard extends StatelessWidget {
                 //   child: SvgPicture.asset("assets/icons/icon_2.svg"),
                 // ),
                 Text(
-                  "Network: ",
+                  "Wifi: ",
                   style: GoogleFonts.aBeeZee(
                     color: ColorsConstant.yellowPrimaryColor,
                     fontWeight: FontWeight.bold,

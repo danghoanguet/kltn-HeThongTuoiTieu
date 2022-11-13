@@ -71,22 +71,48 @@ Future<bool> showAlertDialog(
               Navigator.of(context).pop(true);
             });
           }
-          return AlertDialog(
-            title: Text(title),
-            content: Text(content),
+          return CupertinoAlertDialog(
+            title: Text(
+              title,
+              style: TextStyle(
+                  fontSize: 26,
+                  fontWeight: FontWeight.bold,
+                  color: ColorsConstant.kPrimaryColor),
+            ),
+            content: Text(
+              content,
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 17,
+                  color: ColorsConstant.textBlue2),
+            ),
             actions: [
               if (cancelActionText != null)
                 CupertinoDialogAction(
-                    onPressed: () => Navigator.of(context).pop(false),
-                    child: Text(
-                      cancelActionText,
-                    )),
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text(
+                    cancelActionText,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black54),
+                  ),
+                ),
               CupertinoDialogAction(
                   onPressed: () => Navigator.of(context).pop(true),
                   child: Text(
                     defaultActionText,
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: ColorsConstant.kPrimaryColor),
                   )),
             ],
+            // elevation: 24,
+            // backgroundColor: ColorsConstant.kPrimaryColor.withOpacity(0.5),
+            // shape: RoundedRectangleBorder(
+            //   borderRadius: new BorderRadius.circular(12.0),
+            // ),
           );
         }).then((value) => value ?? false);
   }

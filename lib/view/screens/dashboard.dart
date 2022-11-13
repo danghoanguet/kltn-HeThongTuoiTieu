@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kltn/view/screens/about_screen.dart';
 import 'package:kltn/view/screens/sensor_screen/sensor_screen.dart';
 import 'package:kltn/view/screens/pump_controller_screen/pump_controller_screen.dart';
 import 'package:kltn/view/screens/pump_screen.dart';
@@ -45,9 +44,13 @@ class _DashboardState extends State<Dashboard> {
           left: 10 * 2,
           right: 10 * 2,
         ),
-        height: 50,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xFF202428),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: ColorsConstant.progressBarBackground,
+          // ),
           boxShadow: [
             BoxShadow(
               offset: Offset(0, -10),
@@ -58,8 +61,10 @@ class _DashboardState extends State<Dashboard> {
         ),
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(16),
-            topLeft: Radius.circular(16),
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
           ),
           child: BottomNavigationBar(
             currentIndex: currentPageIndex,
@@ -70,7 +75,7 @@ class _DashboardState extends State<Dashboard> {
             unselectedFontSize: 12.sp,
             selectedItemColor: ColorsConstant.kPrimaryColor,
             type: BottomNavigationBarType.fixed,
-            backgroundColor: ColorsConstant.white,
+            backgroundColor: Color(0xFF202428),
             unselectedItemColor: ColorsConstant.gray1,
             onTap: (index) {
               setState(() {

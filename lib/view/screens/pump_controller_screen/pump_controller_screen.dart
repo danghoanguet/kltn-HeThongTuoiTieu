@@ -1,4 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,6 +7,7 @@ import 'package:kltn/common/constants/colors_constant.dart';
 import 'package:kltn/view/screens/sensor_screen/components/humid_card_item.dart';
 
 import '../../../data/model/PumpModel.dart';
+import '../../widgets/scatter_chart.dart';
 import '../sensor_screen/components/temperature_card_item.dart';
 import '../sensor_screen/components/soil_card_item.dart';
 import '../sensor_screen/components/temperature_bar.dart';

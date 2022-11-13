@@ -17,10 +17,7 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -28,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -49,6 +43,16 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyDWKQV-Yu4Rr13_KB4jCHyoDVJB8v1JnhU',
+    appId: '1:525606001037:web:b2ecdbe49f24a6249205c4',
+    messagingSenderId: '525606001037',
+    projectId: 'kltn-hethongtuoitieu-87ff7',
+    authDomain: 'kltn-hethongtuoitieu-87ff7.firebaseapp.com',
+    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAnOmt_-fgq0fwABrfvyN0HQo-Yi3ZcB04',
     appId: '1:525606001037:android:120912fd9c55eb839205c4',
@@ -60,12 +64,23 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA1980lR8rH1Af4UJe6JZkAZMldoN-kwy4',
-    appId: '1:525606001037:ios:4c784eb91f98fee09205c4',
+    appId: '1:525606001037:ios:40ddf979df8c0d439205c4',
     messagingSenderId: '525606001037',
     projectId: 'kltn-hethongtuoitieu-87ff7',
     databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
-    iosClientId: '525606001037-c3u9l8cgsthepnfr8ccodct78rohh4e9.apps.googleusercontent.com',
-    iosBundleId: 'O',
+    iosClientId: '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.kltn',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyA1980lR8rH1Af4UJe6JZkAZMldoN-kwy4',
+    appId: '1:525606001037:ios:40ddf979df8c0d439205c4',
+    messagingSenderId: '525606001037',
+    projectId: 'kltn-hethongtuoitieu-87ff7',
+    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
+    iosClientId: '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
+    iosBundleId: 'com.example.kltn',
   );
 }

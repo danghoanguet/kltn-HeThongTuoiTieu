@@ -1,0 +1,3 @@
+class SensorScreenInterface {
+  void toggleScreen() {}
+}

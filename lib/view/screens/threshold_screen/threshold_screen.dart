@@ -6,6 +6,7 @@ import 'package:kltn/view/screens/threshold_screen/components/warning_item.dart'
 import '../../../common/constants/colors_constant.dart';
 import '../../widgets/label_item.dart';
 import '../../widgets/show_alert_dialog.dart';
+import 'components/set_vpd_item.dart';
 
 class ThresholdScreen extends StatefulWidget {
   const ThresholdScreen({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class ThresholdScreen extends StatefulWidget {
 }
 
 class _ThresholdScreenState extends State<ThresholdScreen> {
+  final _database = FirebaseDatabase.instance.ref();
   bool _isValidate = false;
 
   TextEditingController _nhietDoController = TextEditingController();
@@ -50,7 +52,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final scaffold = ScaffoldMessenger.of(context);
-
+    print("threshold build run");
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -79,6 +81,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                 SizedBox(
                   height: 20,
                 ),
+
                 LabelItem(
                   label: "SET THRESHOLD",
                   imageUrl: "assets/images/stat.png",
@@ -87,6 +90,10 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                 SizedBox(
                   height: 20,
                 ),
+                // SetVPDItem(),
+                // SizedBox(
+                //   height: 20,
+                // ),
                 Container(
                   margin: EdgeInsets.only(bottom: 10),
                   width: double.infinity,
@@ -413,7 +420,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
     if (await showAlertDialog(context,
             title: 'Are you sure?',
             content:
-                'Temperature threshold: ${_nhietDoController.text.toString()} \u2103\nHumid threshold: ${_doAmController.text.toString()}%\nSoil threshold: ${_doAmDatController.text.toString()}%',
+                'Temperature: ${_nhietDoController.text.toString()}\u2103\nHumid threshold: ${_doAmController.text.toString()}%\nSoil threshold: ${_doAmDatController.text.toString()}%',
             defaultActionText: 'OK',
             cancelActionText: "NO") ==
         true) {

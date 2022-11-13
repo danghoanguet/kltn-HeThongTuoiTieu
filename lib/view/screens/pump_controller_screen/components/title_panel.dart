@@ -31,12 +31,14 @@ class TitlePanel extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 5.0),
-              Text(
-                "Tap to turn off or swipe up for a fast setup",
-                style: TextStyle(
-                  color: ColorsConstant.lightTextColor,
-                  fontSize: 13.0,
-                  fontWeight: FontWeight.w900,
+              Flexible(
+                child: Text(
+                  "Tap to turn off or swipe up",
+                  style: TextStyle(
+                    color: ColorsConstant.lightTextColor,
+                    fontSize: 13.0,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
             ],
@@ -50,7 +52,7 @@ class TitlePanel extends StatelessWidget {
               onTab: (isOn) async {
                 DatabaseReference _refControl =
                     FirebaseDatabase.instance.ref("CONTROL");
-                await _refControl.update({"State": isOn == true ? "0" : "50"});
+                await _refControl.update({"State": isOn == true ? "0" : "100"});
               },
             ),
           ),

@@ -138,7 +138,7 @@ class TemperatureCardItem extends StatelessWidget {
 
   bool isGoodCondition() {
     final val = double.parse(value);
-    if (val > 0 && val < double.parse(threshold))
+    if (val >= 0 && val < double.parse(threshold))
       return true;
     else if (val > double.parse(threshold)) return false;
     return false;

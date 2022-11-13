@@ -70,7 +70,6 @@ class _PumpScreenState extends State<PumpScreen> {
                                 // This is called when the user toggles the switch.
                                 setState(() {
                                   _isManuel = value;
-                                  print("isManuel: $_isManuel\n");
                                 });
                                 DatabaseReference _refControl =
                                     FirebaseDatabase.instance.ref("CONTROL");
@@ -101,7 +100,6 @@ class _PumpScreenState extends State<PumpScreen> {
                                 // This is called when the user toggles the switch.
                                 setState(() {
                                   _isManuel = !value;
-                                  print("isManuel: $_isManuel\n");
                                 });
                                 DatabaseReference _refControl =
                                     FirebaseDatabase.instance.ref("CONTROL");
@@ -126,7 +124,6 @@ class _PumpScreenState extends State<PumpScreen> {
                                 onChanged: (value) {
                                   setState(() {
                                     _pumpValue = value;
-                                    print("_pumpValue: $_pumpValue");
                                   });
                                 },
                                 onChangeEnd: (value) async {
@@ -166,8 +163,6 @@ class _PumpScreenState extends State<PumpScreen> {
                                           // This is called when the user toggles the switch.
                                           setState(() {
                                             _isPumpRunning = value;
-                                            print(
-                                                "_isPumpRunning: $_isPumpRunning\n");
                                           });
                                           DatabaseReference _refControl =
                                               FirebaseDatabase.instance

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kltn/view/screens/sensor_screen/components/temperature_bar.dart';
-import 'package:kltn/view/widgets/water_progess_indicator.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../../../common/constants/colors_constant.dart';
@@ -125,11 +123,20 @@ class SoilCardItem extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Expanded(
-                child: Container(
-                  height: size.height * 0.15,
+              Container(
+                //color: Colors.white,
+                height: size.height * 0.12,
+                child: FittedBox(
                   child: SleekCircularSlider(
                     appearance: CircularSliderAppearance(
+                      // infoProperties: InfoProperties(
+                      //   bottomLabelText: "Soil",
+                      //   mainLabelStyle: TextStyle(
+                      //     fontSize: 30,
+                      //     fontWeight: FontWeight.w900,
+                      //     color: ColorsConstant.borderTextFieldColor,
+                      //   ),
+                      // ),
                       customWidths: CustomSliderWidths(progressBarWidth: 10),
                       customColors: CustomSliderColors(
                         progressBarColors: ColorsConstant.progressBarSoilColor,
@@ -146,34 +153,32 @@ class SoilCardItem extends StatelessWidget {
                             ? double.parse(threshold)
                             : double.parse(value),
                     innerWidget: (_) {
-                      return Center(
-                        child: Container(
-                          width: 60.0,
-                          height: 50.0,
-                          child: Column(
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  // (double.parse(value) > double.parse(threshold))
-                                  //     ? threshold + "%" :
-                                  value.toString() + "%",
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.w900,
-                                    color: ColorsConstant.mainTextColor,
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                "SOIL",
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: FittedBox(
+                              child: Text(
+                                // (double.parse(value) > double.parse(threshold))
+                                //     ? threshold + "%" :
+                                value.toString() + "%",
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  color: ColorsConstant.mainTextColor,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w900,
+                                  color: ColorsConstant.borderTextFieldColor,
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                          Text(
+                            "SOIL",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500,
+                              color: Color.fromRGBO(139, 69, 19, 1),
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),

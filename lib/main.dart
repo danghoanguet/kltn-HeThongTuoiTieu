@@ -3,7 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kltn/view/screens/connecting_screen.dart';
-import 'package:kltn/view/screens/splash_screen.dart';
+import 'package:kltn/view/screens/dashboard.dart';
 
 import 'common/constants/colors_constant.dart';
 import 'data/model/WifiModel.dart';
@@ -12,8 +12,9 @@ import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Firebase.apps.isNotEmpty) {
+  if (Firebase.apps.isEmpty) {
     await Firebase.initializeApp(
+      name: "KLTN-HeThongTuoiTieu",
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: FutureBuilder(
-        future: _fbApp,
+        future: _fbApp, //
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print("You have an error! ${snapshot.error.toString()}");
@@ -74,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> {
     // _activateListener();
     super.initState();
   }
-
   // void _activateListener() {
   //   _database.child("Wifi/Status").onValue.listen((event) {
   //     final String wifiStatus = event.snapshot.value.toString();
@@ -86,6 +86,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    // Size size = MediaQuery.of(context).size;
+    // print("myHomePage build");
     DimensConstant.init(context);
     return ScreenUtilInit(
         designSize: const Size(
@@ -106,7 +108,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           as Map<dynamic, dynamic>));
                   print("status: ${wifiModel.wifiStatus}\n");
                   if (wifiModel.wifiStatus == "Connected") {
-                    return SplashScreen();
+                    return Dashboard();
                   } else {
                     return ConnectingScreen();
                   }
@@ -120,5 +122,6 @@ class _MyHomePageState extends State<MyHomePage> {
             // body: _wifiStatus == "Connected" ? HomeScreen() : ConnectingScreen(),
           );
         });
+    //});
   }
 }

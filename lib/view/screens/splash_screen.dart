@@ -16,9 +16,11 @@ class SplashScreen extends StatelessWidget {
             MaterialPageRoute(builder: (BuildContext context) => Dashboard())));
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage(imageBackgroundUrl),
-          fit: BoxFit.cover,
+        borderRadius: BorderRadius.only(),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: ColorsConstant.conBackgroundColor,
         ),
       ),
       child: Center(
