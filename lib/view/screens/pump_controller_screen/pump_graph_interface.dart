@@ -1,0 +1,3 @@
+class PumpGraphInterface {
+  void toggleScreen() {}
+}

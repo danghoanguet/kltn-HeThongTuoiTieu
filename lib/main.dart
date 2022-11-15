@@ -18,7 +18,6 @@ void main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
   }
-
   runApp(MyApp());
 }
 
@@ -102,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
               stream: _database.child("Wifi").onValue,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  print(snapshot.data?.snapshot.value);
+                  // print(snapshot.data?.snapshot.value);
                   final wifiModel = WifiModel.fromRTDB(
                       Map<String, dynamic>.from(snapshot.data?.snapshot.value
                           as Map<dynamic, dynamic>));

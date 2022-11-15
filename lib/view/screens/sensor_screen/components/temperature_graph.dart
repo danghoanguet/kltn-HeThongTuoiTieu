@@ -75,6 +75,7 @@ class _TemperatureGraphItemState extends State<TemperatureGraphItem> {
           intervalType: DateTimeIntervalType.minutes,
           title: AxisTitle(text: 'Time'),
           labelStyle: TextStyle(color: Colors.white),
+          // dateFormat: DateFormat('kk:mm:ss'),
         ),
         primaryYAxis: NumericAxis(
           // numberFormat: NumberFormat("\u2103"),

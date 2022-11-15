@@ -52,7 +52,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final scaffold = ScaffoldMessenger.of(context);
-    print("threshold build run");
+    // print("threshold build run");
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();

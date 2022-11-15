@@ -124,7 +124,7 @@ class _OverViewScreenState extends State<OverViewScreen> {
                         stream: _database.child("Wifi").onValue,
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            print(snapshot.data?.snapshot.value);
+                            // print(snapshot.data?.snapshot.value);
                             final wifiModel = WifiModel.fromRTDB(
                                 Map<String, dynamic>.from(snapshot.data
                                     ?.snapshot.value as Map<dynamic, dynamic>));

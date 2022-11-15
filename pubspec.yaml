@@ -44,6 +44,7 @@ dependencies:
   fl_chart: ^0.55.2
   syncfusion_flutter_charts: ^19.2.47
   intl: ^0.17.0
+  cloud_firestore: ^4.0.5
 
 
 #  toggle_switch: ^2.0.1
