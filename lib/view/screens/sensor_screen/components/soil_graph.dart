@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:kltn/common/constants/colors_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../../../../common/constants/dimens_constant.dart';
 import '../graph_screen.dart';
 
 class SoilGraphItem extends StatefulWidget {
@@ -23,11 +24,18 @@ class _SoilGraphItemState extends State<SoilGraphItem> {
   ChartSeriesController? _chartSeriesController;
   final _database = FirebaseDatabase.instance.ref();
   TooltipBehavior _tooltipBehavior = TooltipBehavior(enable: true);
+  TrackballBehavior? _trackballBehavior;
 
   @override
   void initState() {
     // chartData = getChartData();
     // Timer.periodic(const Duration(seconds: 2), updateDataSource);
+    _trackballBehavior = TrackballBehavior(
+        enable: true,
+        lineColor: Colors.white,
+        lineWidth: 1,
+        activationMode: ActivationMode.longPress,
+        tooltipSettings: const InteractiveTooltip(format: 'point.x : point.y'));
     super.initState();
   }
 
@@ -53,34 +61,38 @@ class _SoilGraphItemState extends State<SoilGraphItem> {
               color: Colors.white,
             )),
         tooltipBehavior: _tooltipBehavior,
+        trackballBehavior: _trackballBehavior,
         series: <SplineSeries<LiveData, DateTime>>[
           SplineSeries<LiveData, DateTime>(
-              name: "Soil %",
-              onRendererCreated: (ChartSeriesController controller) {
-                _chartSeriesController = controller;
-                if (widget.chartData.length == 15) {
-                  widget.chartData.removeAt(0);
-                  // _chartSeriesController?.updateDataSource(
-                  //     addedDataIndex: widget.chartData.length - 1,
-                  //     removedDataIndex: 0);
-                }
+            name: "Soil %",
+            onRendererCreated: (ChartSeriesController controller) {
+              _chartSeriesController = controller;
+              if (widget.chartData.length == DimensConstant.numberOfX) {
+                widget.chartData.removeAt(0);
                 // _chartSeriesController?.updateDataSource(
-                //     addedDataIndex: widget.chartData.length - 1);
-              },
-              dataSource: widget.chartData,
-              color: Colors.red,
-              width: 3,
-              xValueMapper: (LiveData data, _) => data.time,
-              yValueMapper: (LiveData data, _) => data.data,
-              dataLabelSettings: DataLabelSettings(
-                isVisible: false,
-              ),
-              enableTooltip: true)
+                //     addedDataIndex: widget.chartData.length - 1,
+                //     removedDataIndex: 0);
+              }
+              // _chartSeriesController?.updateDataSource(
+              //     addedDataIndex: widget.chartData.length - 1);
+            },
+            dataSource: widget.chartData,
+            color: Colors.red,
+            width: 3,
+            xValueMapper: (LiveData data, _) => data.time,
+            yValueMapper: (LiveData data, _) => data.data,
+            dataLabelSettings: DataLabelSettings(
+              isVisible: false,
+            ),
+            enableTooltip: true,
+            markerSettings:
+                const MarkerSettings(isVisible: true, width: 5, height: 5),
+          )
         ],
         primaryXAxis: DateTimeCategoryAxis(
           majorGridLines: const MajorGridLines(width: 0.7),
           edgeLabelPlacement: EdgeLabelPlacement.shift,
-          interval: 3,
+          interval: 4,
           intervalType: DateTimeIntervalType.minutes,
           labelStyle: TextStyle(color: Colors.white),
           title: AxisTitle(

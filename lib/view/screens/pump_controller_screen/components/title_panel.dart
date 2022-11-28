@@ -33,7 +33,7 @@ class TitlePanel extends StatelessWidget {
               SizedBox(height: 5.0),
               Flexible(
                 child: Text(
-                  "Tap to turn off or swipe up",
+                  "Tap button to turn on or off",
                   style: TextStyle(
                     color: ColorsConstant.lightTextColor,
                     fontSize: 13.0,

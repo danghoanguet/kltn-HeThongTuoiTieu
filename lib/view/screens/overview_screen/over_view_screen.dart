@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -26,7 +28,8 @@ class _OverViewScreenState extends State<OverViewScreen> {
   final _database = FirebaseDatabase.instance.ref();
   final imageBackgroundUrl =
       "https://cdn.pixabay.com/photo/2016/09/05/15/07/concrete-1646788__340.jpg";
-
+  Color? vpdColor = Colors.transparent;
+  String? vpdStatus = "";
   @override
   void initState() {
     // _activateListener();
@@ -41,6 +44,11 @@ class _OverViewScreenState extends State<OverViewScreen> {
     //   });
     // });
   }
+  // double calculateVPD(double temp, double rh) {
+  //   return ((610.7 * pow(10, (7.5 * temp / (237.3 + temp)))) /
+  //       1000 *
+  //       (1 - rh / 100));
+  // }
 
   TextEditingController _nhietDoController = TextEditingController();
   TextEditingController _doAmController = TextEditingController();
@@ -182,6 +190,70 @@ class _OverViewScreenState extends State<OverViewScreen> {
                   ))
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
+              // StreamBuilder<DatabaseEvent>(
+              //     stream: _database.child("DHT").onValue,
+              //     builder: (context, snapshot) {
+              //       if (!snapshot.hasData) {
+              //         print("${snapshot.data?.snapshot.value.toString()}\n");
+              //
+              //         return Center(
+              //           child: CircularProgressIndicator(),
+              //         );
+              //       } else {
+              //         final _dHTModel = DHTModel.fromRTDB(
+              //             Map<String, dynamic>.from(snapshot
+              //                 .data?.snapshot.value as Map<dynamic, dynamic>));
+              //         final vpd = calculateVPD(double.parse(_dHTModel.temp),
+              //             double.parse(_dHTModel.humid));
+              //         if (0.8 <= vpd && vpd <= 1.0) {
+              //           vpdColor = Colors.green;
+              //           vpdStatus = "Vegetative";
+              //         } else if (vpd > 1 && vpd <= 1.24) {
+              //           vpdColor = Colors.yellowAccent.shade700;
+              //           vpdStatus = "Flowering";
+              //         } else if (vpd > 1.24) {
+              //           vpdColor = Colors.deepPurpleAccent;
+              //           vpdStatus = "Dry/Stress";
+              //         } else {
+              //           vpdColor = Colors.blueAccent.shade200;
+              //           vpdStatus = "Humid";
+              //         }
+              //         return Container(
+              //           margin: EdgeInsets.symmetric(horizontal: 20),
+              //           padding:
+              //               EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              //           width: double.infinity,
+              //           decoration: BoxDecoration(
+              //             color: vpdColor,
+              //             borderRadius: BorderRadius.circular(20),
+              //           ),
+              //           child: Column(
+              //             children: [
+              //               Text(
+              //                 "VPD: ${vpd.toStringAsFixed(2)}(kPa)",
+              //                 style: TextStyle(
+              //                     color: Colors.white,
+              //                     fontWeight: FontWeight.bold,
+              //                     fontSize: 26),
+              //               ),
+              //               SizedBox(
+              //                 height: 5,
+              //               ),
+              //               Text(
+              //                 "Status:" + vpdStatus!,
+              //                 style: TextStyle(
+              //                     color: Colors.white,
+              //                     fontWeight: FontWeight.w500,
+              //                     fontSize: 14),
+              //               )
+              //             ],
+              //           ),
+              //         );
+              //       }
+              //     }),
               SizedBox(
                 height: 20,
               ),
@@ -415,7 +487,6 @@ class _buildSensorCard extends StatelessWidget {
               ),
             ),
           ),
-          //TODO:
           Container(
             margin: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
             decoration: BoxDecoration(

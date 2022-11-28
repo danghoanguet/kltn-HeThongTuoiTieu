@@ -98,8 +98,7 @@ class ModePanel extends StatelessWidget {
                     ? (isManual) async {
                         DatabaseReference _refControl =
                             FirebaseDatabase.instance.ref("CONTROL");
-                        await _refControl
-                            .update({"Manual": "1", "State": "100"});
+                        await _refControl.update({"Manual": "1", "State": "0"});
                       }
                     : (isManual) {},
                 isOn: pumpModel.control == "1" ? true : false,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kltn/data/model/pump.dart';
 import 'package:kltn/view/screens/pump_controller_screen/pump_graph_interface.dart';
 
+import '../../../common/constants/assets_constant.dart';
 import '../../../common/constants/colors_constant.dart';
 import '../../../services/database.dart';
 import '../test_chart2.dart';
@@ -11,28 +12,15 @@ import 'components/pump_chart_column.dart';
 class PumpGraphScreen extends StatelessWidget {
   final PumpGraphInterface interface;
 
-  final _dbFirestore = FirestoreDatabase(uid: 'LC8T8ufP8mN2SL0DTbLpqSQ3PRG2');
-
+  final _dbFirestore = FirestoreDatabase(uid: AssetsConstant.uid);
+  final pumpPower = 0.116;
+  final pumpTime = 3;
   PumpGraphScreen({super.key, required this.interface});
 
   @override
   Widget build(BuildContext context) {
     // print("pumpGraphScreen build run");
-    List<ChartData> data = [];
-    List<ChartData> data2 = [];
 
-    double jan = 0;
-    double feb = 0;
-    double mar = 0;
-    double apr = 0;
-    double may = 0;
-    double jun = 0;
-    double jul = 0;
-    double aug = 0;
-    double sep = 0;
-    double oct = 0;
-    double nov = 0;
-    double dec = 0;
     return Scaffold(
       body: Container(
         height: double.infinity,
@@ -55,6 +43,20 @@ class PumpGraphScreen extends StatelessWidget {
             stream: _dbFirestore.pumpsStream(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
+                List<ChartData> data = [];
+                List<ChartData> data2 = [];
+                double jan = 0;
+                double feb = 0;
+                double mar = 0;
+                double apr = 0;
+                double may = 0;
+                double jun = 0;
+                double jul = 0;
+                double aug = 0;
+                double sep = 0;
+                double oct = 0;
+                double nov = 0;
+                double dec = 0;
                 snapshot.data?.forEach((pump) {
                   switch (pump.month) {
                     case "1":
@@ -96,32 +98,32 @@ class PumpGraphScreen extends StatelessWidget {
                   }
                 });
                 data = [
-                  ChartData('JAN', jan * 0.116 / 2),
-                  ChartData('FEB', feb * 0.116 / 2),
-                  ChartData('MAR', mar * 0.116 / 2),
-                  ChartData('APR', apr * 0.116 / 2),
-                  ChartData('MAY', may * 0.116 / 2),
-                  ChartData('JUN', jun * 0.116 / 2),
-                  ChartData('JULY', jul * 0.116 / 2),
-                  ChartData('AUG', aug * 0.116 / 2),
-                  ChartData('SEP', sep * 0.116 / 2),
-                  ChartData('OCT', oct * 0.116 / 2),
-                  ChartData('NOV', nov * 0.116 / 2),
-                  ChartData('DEC', dec * 0.116 / 2),
+                  ChartData('JAN', jan * pumpPower),
+                  ChartData('FEB', feb * pumpPower),
+                  ChartData('MAR', mar * pumpPower),
+                  ChartData('APR', apr * pumpPower),
+                  ChartData('MAY', may * pumpPower),
+                  ChartData('JUN', jun * pumpPower),
+                  ChartData('JULY', jul * pumpPower),
+                  ChartData('AUG', aug * pumpPower),
+                  ChartData('SEP', sep * pumpPower),
+                  ChartData('OCT', oct * pumpPower),
+                  ChartData('NOV', nov * pumpPower),
+                  ChartData('DEC', dec * pumpPower),
                 ];
                 data2 = [
-                  ChartData('JAN', jan * 3 / 60 / 2),
-                  ChartData('FEB', feb * 3 / 60 / 2),
-                  ChartData('MAR', mar * 3 / 60 / 2),
-                  ChartData('APR', apr * 3 / 60 / 2),
-                  ChartData('MAY', may * 3 / 60 / 2),
-                  ChartData('JUN', jun * 3 / 60 / 2),
-                  ChartData('JULY', jul * 3 / 60 / 2),
-                  ChartData('AUG', aug * 3 / 60 / 2),
-                  ChartData('SEP', sep * 3 / 60 / 2),
-                  ChartData('OCT', oct * 3 / 60 / 2),
-                  ChartData('NOV', nov * 3 / 60 / 2),
-                  ChartData('DEC', dec * 3 / 60 / 2),
+                  ChartData('JAN', jan * pumpTime / 60),
+                  ChartData('FEB', feb * pumpTime / 60),
+                  ChartData('MAR', mar * pumpTime / 60),
+                  ChartData('APR', apr * pumpTime / 60),
+                  ChartData('MAY', may * pumpTime / 60),
+                  ChartData('JUN', jun * pumpTime / 60),
+                  ChartData('JULY', jul * pumpTime / 60),
+                  ChartData('AUG', aug * pumpTime / 60),
+                  ChartData('SEP', sep * pumpTime / 60),
+                  ChartData('OCT', oct * pumpTime / 60),
+                  ChartData('NOV', nov * pumpTime / 60),
+                  ChartData('DEC', dec * pumpTime / 60),
                 ];
                 return SingleChildScrollView(
                   child: Column(

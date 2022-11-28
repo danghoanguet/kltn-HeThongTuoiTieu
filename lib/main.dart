@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             print("You have an error! ${snapshot.error.toString()}");
-            return Scaffold(body: const Text("Something went wrong!"));
+            return Scaffold(
+                body: Center(child: const Text("Something went wrong!")));
           } else if (snapshot.hasData) {
             return const MyHomePage(title: 'KLTN - Hệ Thống Tưới Tiêu');
           } else {

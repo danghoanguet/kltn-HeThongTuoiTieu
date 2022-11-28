@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kltn/common/constants/colors_constant.dart';
+import 'package:kltn/common/constants/dimens_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../graph_screen.dart';
@@ -23,11 +24,17 @@ class _TemperatureGraphItemState extends State<TemperatureGraphItem> {
   ChartSeriesController? _chartSeriesController;
   final _database = FirebaseDatabase.instance.ref();
   TooltipBehavior _tooltipBehavior = TooltipBehavior(enable: true);
+  TrackballBehavior? _trackballBehavior;
 
   @override
   void initState() {
     // chartData = getChartData();
     // Timer.periodic(const Duration(seconds: 2), updateDataSource);
+    _trackballBehavior = TrackballBehavior(
+        enable: true,
+        lineColor: Colors.white,
+        activationMode: ActivationMode.longPress,
+        tooltipSettings: const InteractiveTooltip(format: 'point.x : point.y'));
     super.initState();
   }
 
@@ -44,29 +51,33 @@ class _TemperatureGraphItemState extends State<TemperatureGraphItem> {
         title: ChartTitle(text: "Temperature data"),
         legend: Legend(isVisible: true, position: LegendPosition.bottom),
         tooltipBehavior: _tooltipBehavior,
+        trackballBehavior: _trackballBehavior,
         series: <SplineSeries<LiveData, DateTime>>[
           SplineSeries<LiveData, DateTime>(
-              name: "Temperature \u2103",
-              onRendererCreated: (ChartSeriesController controller) {
-                _chartSeriesController = controller;
-                if (widget.chartData.length == 15) {
-                  widget.chartData.removeAt(0);
-                  // _chartSeriesController?.updateDataSource(
-                  //     addedDataIndex: widget.chartData.length - 1,
-                  //     removedDataIndex: 0);
-                }
+            name: "Temperature \u2103",
+            onRendererCreated: (ChartSeriesController controller) {
+              _chartSeriesController = controller;
+              if (widget.chartData.length == DimensConstant.numberOfX) {
+                widget.chartData.removeAt(0);
                 // _chartSeriesController?.updateDataSource(
-                //     addedDataIndex: widget.chartData.length - 1);
-              },
-              dataSource: widget.chartData,
-              color: const Color.fromRGBO(192, 108, 132, 1),
-              width: 3,
-              xValueMapper: (LiveData data, _) => data.time,
-              yValueMapper: (LiveData data, _) => data.data,
-              dataLabelSettings: DataLabelSettings(
-                isVisible: false,
-              ),
-              enableTooltip: true)
+                //     addedDataIndex: widget.chartData.length - 1,
+                //     removedDataIndex: 0);
+              }
+              // _chartSeriesController?.updateDataSource(
+              //     addedDataIndex: widget.chartData.length - 1);
+            },
+            dataSource: widget.chartData,
+            color: const Color.fromRGBO(192, 108, 132, 1),
+            width: 4,
+            xValueMapper: (LiveData data, _) => data.time,
+            yValueMapper: (LiveData data, _) => data.data,
+            dataLabelSettings: DataLabelSettings(
+              isVisible: false,
+            ),
+            enableTooltip: true,
+            markerSettings:
+                const MarkerSettings(isVisible: true, width: 5, height: 5),
+          )
         ],
         primaryXAxis: DateTimeCategoryAxis(
           majorGridLines: const MajorGridLines(width: 0.7),

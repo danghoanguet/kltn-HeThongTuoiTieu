@@ -6,7 +6,7 @@
     href value below to reflect the base path you are serving from.
 
     The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+    it to work correctly.2
 
     For more details:
     * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
@@ -40,6 +40,21 @@
   <script src="flutter.js" defer></script>
 </head>
 <body>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyDWKQV-Yu4Rr13_KB4jCHyoDVJB8v1JnhU",
+      authDomain: "kltn-hethongtuoitieu-87ff7.firebaseapp.com",
+      databaseURL: "https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "kltn-hethongtuoitieu-87ff7",
+      storageBucket: "kltn-hethongtuoitieu-87ff7.appspot.com",
+      messagingSenderId: "525606001037",
+      appId: "1:525606001037:web:b2ecdbe49f24a6249205c4",
+      measurementId: "G-ES1HWZJ1Z0"
+    };
+      // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    </script>
   <script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
@@ -55,6 +70,5 @@
       });
     });
   </script>
-
 </body>
 </html>

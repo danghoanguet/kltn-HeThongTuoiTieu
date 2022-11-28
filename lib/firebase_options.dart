@@ -49,7 +49,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '525606001037',
     projectId: 'kltn-hethongtuoitieu-87ff7',
     authDomain: 'kltn-hethongtuoitieu-87ff7.firebaseapp.com',
-    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
   );
 
@@ -58,7 +59,8 @@ class DefaultFirebaseOptions {
     appId: '1:525606001037:android:120912fd9c55eb839205c4',
     messagingSenderId: '525606001037',
     projectId: 'kltn-hethongtuoitieu-87ff7',
-    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
   );
 
@@ -67,9 +69,11 @@ class DefaultFirebaseOptions {
     appId: '1:525606001037:ios:40ddf979df8c0d439205c4',
     messagingSenderId: '525606001037',
     projectId: 'kltn-hethongtuoitieu-87ff7',
-    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
-    iosClientId: '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
+    iosClientId:
+        '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
     iosBundleId: 'com.example.kltn',
   );
 
@@ -78,9 +82,11 @@ class DefaultFirebaseOptions {
     appId: '1:525606001037:ios:40ddf979df8c0d439205c4',
     messagingSenderId: '525606001037',
     projectId: 'kltn-hethongtuoitieu-87ff7',
-    databaseURL: 'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'kltn-hethongtuoitieu-87ff7.appspot.com',
-    iosClientId: '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
+    iosClientId:
+        '525606001037-teqp1lbuvfsq5msvk29r6bejm77gk1r8.apps.googleusercontent.com',
     iosBundleId: 'com.example.kltn',
   );
 }

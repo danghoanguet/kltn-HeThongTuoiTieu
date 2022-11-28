@@ -45,4 +45,5 @@ class AssetsConstant {
   static const String icMeta = 'assets/icons/ic_meta.png';
 
   /// others
+  static const String uid = 'LC8T8ufP8mN2SL0DTbLpqSQ3PRG2';
 }

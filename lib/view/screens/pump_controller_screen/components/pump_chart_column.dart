@@ -56,6 +56,7 @@ class _ChartColumnState extends State<ChartColumn> {
   Widget build(BuildContext context) {
     return Container(
       child: SfCartesianChart(
+        enableSideBySideSeriesPlacement: false,
         title: ChartTitle(
           text: "Pump Status",
           textStyle: TextStyle(color: ColorsConstant.blueSecondaryColor),
@@ -68,8 +69,10 @@ class _ChartColumnState extends State<ChartColumn> {
           ),
         ),
         tooltipBehavior: _tooltip,
-        series: <ChartSeries<ChartData, String>>[
+        series: <ColumnSeries<ChartData, String>>[
           ColumnSeries<ChartData, String>(
+            width: 0.5,
+            borderRadius: BorderRadius.circular(10),
             dataSource: widget.data,
             enableTooltip: true,
             name: 'Water(L)',
@@ -81,6 +84,8 @@ class _ChartColumnState extends State<ChartColumn> {
             yValueMapper: (ChartData data, _) => data.y,
           ),
           ColumnSeries<ChartData, String>(
+            borderRadius: BorderRadius.circular(10),
+            width: 0.3,
             dataSource: widget.data2,
             enableTooltip: true,
             name: 'Time (Minutes)',
