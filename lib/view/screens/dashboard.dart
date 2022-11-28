@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kltn/view/screens/sensor_screen/sensor_screen.dart';
+import 'package:kltn/view/screens/pump_controller_screen/pump_controller_screen.dart';
+import 'package:kltn/view/screens/pump_screen.dart';
+import 'package:kltn/view/screens/threshold_screen/threshold_screen.dart';
+
+import '../../common/constants/assets_constant.dart';
+import '../../common/constants/colors_constant.dart';
+import '../widgets/custom_appbar.dart';
+import 'overview_screen/over_view_screen.dart';
+
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
+
+  @override
+  State<Dashboard> createState() => _DashboardState();
+}
+
+class _DashboardState extends State<Dashboard> {
+  int currentPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      //appBar: CustomAppBar(),
+      body: IndexedStack(
+        index: currentPageIndex,
+        children: <Widget>[
+          OverViewScreen(),
+          SensorScreen(),
+          PumpController(),
+          ThresholdScreen(),
+        ],
+      ),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.only(
+          left: 10 * 2,
+          right: 10 * 2,
+        ),
+        decoration: BoxDecoration(
+          color: Color(0xFF202428),
+          // gradient: LinearGradient(
+          //   begin: Alignment.topCenter,
+          //   end: Alignment.bottomCenter,
+          //   colors: ColorsConstant.progressBarBackground,
+          // ),
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(0, -10),
+              blurRadius: 35,
+              color: ColorsConstant.kPrimaryColor.withOpacity(0.38),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topRight: Radius.circular(30),
+            topLeft: Radius.circular(30),
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+          child: BottomNavigationBar(
+            currentIndex: currentPageIndex,
+            elevation: 2,
+            showUnselectedLabels: true,
+            showSelectedLabels: true,
+            selectedFontSize: 12.sp,
+            unselectedFontSize: 12.sp,
+            selectedItemColor: ColorsConstant.kPrimaryColor,
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Color(0xFF202428),
+            unselectedItemColor: ColorsConstant.gray1,
+            onTap: (index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/overview.png",
+                  color: currentPageIndex == 0
+                      ? ColorsConstant.kPrimaryColor
+                      : ColorsConstant.gray1,
+                ),
+                label: "Overview",
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/sensor.png",
+                  color: currentPageIndex == 1
+                      ? ColorsConstant.kPrimaryColor
+                      : ColorsConstant.gray1,
+                ),
+                label: "Sensor",
+              ),
+              // BottomNavigationBarItem(
+              //   icon: SvgPicture.asset(
+              //     AssetsConstant.icCircle,
+              //     color: currentPageIndex == 1
+              //         ? ColorsConstant.textBlue2
+              //         : ColorsConstant.gray1,
+              //   ),
+              //   label: S.of(context).circle,
+              // ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/water_pump.png",
+                  color: currentPageIndex == 2
+                      ? ColorsConstant.kPrimaryColor
+                      : ColorsConstant.gray1,
+                ),
+                label: "Pump",
+              ),
+              BottomNavigationBarItem(
+                icon: Image.asset(
+                  "assets/images/threshold.png",
+                  color: currentPageIndex == 3
+                      ? ColorsConstant.kPrimaryColor
+                      : ColorsConstant.gray1,
+                ),
+                label: "Threshold",
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

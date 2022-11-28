@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "525606001037",
+    "firebase_url": "https://kltn-hethongtuoitieu-87ff7-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kltn-hethongtuoitieu-87ff7",
+    "storage_bucket": "kltn-hethongtuoitieu-87ff7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525606001037:android:120912fd9c55eb839205c4",
+        "android_client_info": {
+          "package_name": "com.example.kltn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525606001037-0b1mnjn9e4t4utdbvrddl27m3b0ttvk1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnOmt_-fgq0fwABrfvyN0HQo-Yi3ZcB04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525606001037-0b1mnjn9e4t4utdbvrddl27m3b0ttvk1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "525606001037-c3u9l8cgsthepnfr8ccodct78rohh4e9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "O"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,76 @@
+PODS:
+  - Firebase/CoreOnly (10.0.0):
+    - FirebaseCore (= 10.0.0)
+  - Firebase/Database (10.0.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 10.0.0)
+  - firebase_core (2.1.1):
+    - Firebase/CoreOnly (~> 10.0.0)
+    - FlutterMacOS
+  - firebase_database (10.0.4):
+    - Firebase/CoreOnly (~> 10.0.0)
+    - Firebase/Database (~> 10.0.0)
+    - firebase_core
+    - FlutterMacOS
+  - FirebaseCore (10.0.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.0.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
+  - FirebaseDatabase (10.0.0):
+    - FirebaseCore (~> 10.0)
+    - leveldb-library (~> 1.22)
+  - FlutterMacOS (1.0.0)
+  - GoogleUtilities/Environment (7.8.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleUtilities/Logger (7.8.0):
+    - GoogleUtilities/Environment
+  - "GoogleUtilities/NSData+zlib (7.8.0)"
+  - leveldb-library (1.22.1)
+  - path_provider_macos (0.0.1):
+    - FlutterMacOS
+  - PromisesObjC (2.1.1)
+
+DEPENDENCIES:
+  - firebase_core (from `Flutter/ephemeral/.symlinks/plugins/firebase_core/macos`)
+  - firebase_database (from `Flutter/ephemeral/.symlinks/plugins/firebase_database/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
+
+SPEC REPOS:
+  trunk:
+    - Firebase
+    - FirebaseCore
+    - FirebaseCoreInternal
+    - FirebaseDatabase
+    - GoogleUtilities
+    - leveldb-library
+    - PromisesObjC
+
+EXTERNAL SOURCES:
+  firebase_core:
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_core/macos
+  firebase_database:
+    :path: Flutter/ephemeral/.symlinks/plugins/firebase_database/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  path_provider_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos
+
+SPEC CHECKSUMS:
+  Firebase: 1b810f3d0c0532e27a48f1961f8c0400a668a2cf
+  firebase_core: 2ad407221995257e47215d9ae92467db0dd48ced
+  firebase_database: e6d0c78fed53f7a5652f18ad4138ea8b931da17f
+  FirebaseCore: 97f48a3a567a72b8d4daa0f03c3aadb78df4e995
+  FirebaseCoreInternal: 5eb3960335da5ea30115d57d39db6988c4ad06f3
+  FirebaseDatabase: b210f8a811d6eb80dc565d9570e8486af06e331b
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+  GoogleUtilities: 1d20a6ad97ef46f67bbdec158ce00563a671ebb7
+  leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
+  path_provider_macos: 3c0c3b4b0d4a76d2bf989a913c2de869c5641a19
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+
+PODFILE CHECKSUM: a884f6dd3f7494f3892ee6c81feea3a3abbf9153
+
+COCOAPODS: 1.11.3

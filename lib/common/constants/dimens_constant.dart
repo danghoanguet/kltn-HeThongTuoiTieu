@@ -11,6 +11,8 @@ class DimensConstant {
   static const EdgeInsets vPadding = EdgeInsets.symmetric(vertical: 16);
   static BorderRadius defaultBorderRadius = BorderRadius.circular(10);
   static const double buttonHeight = 43;
+  static const double kDefaultPadding = 20.0;
+  static const int numberOfX = 15;
 
   static void init(context) {
     statusBarHeight = MediaQuery.of(context).padding.top;

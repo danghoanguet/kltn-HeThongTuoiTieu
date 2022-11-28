@@ -20,7 +20,9 @@ class ColorsConstant {
   static const Color red = Color(0xffFF123D);
   static const Color green = Color(0xff00B42A);
   static const Color gray1 = Color(0xff8B96AA);
-
+  static const kPrimaryColor = Color(0xFF0C9869);
+  static const kTextColor = Color(0xFF3C4046);
+  static const kBackgroundColor = Color(0xFFF9F8FD);
   static const greenPrimaryColor = Color(0XFF24CB4C);
   static const greenSecondaryColor = Color(0XFFBBEFC7);
   static const pinkPrimaryColor = Color(0XFFFF2575);
@@ -29,4 +31,32 @@ class ColorsConstant {
   static const yellowSecondaryColor = Color(0XFFFFF0B5);
   static const bluePrimaryColor = Color(0XFF16AFFF);
   static const blueSecondaryColor = Color(0XFFABF2FF);
+
+  static final List<Color> conBackgroundColor = [
+    Color(0xFF353A40),
+    Color(0xFF16171B),
+  ];
+  static final List<Color> borderColors = [
+    Color(0xFF424750),
+    Color(0xFF202326),
+  ];
+  static final List<Color> progressBarBackground = [
+    Color(0xFF202428),
+    Color(0xFF131314),
+  ];
+  static final List<Color> progressBarColor = [
+    Color(0xff11A8FD),
+    Color(0xff005696),
+  ];
+  static final List<Color> progressBarSoilColor = [
+    Colors.brown,
+    Color.fromRGBO(139, 69, 19, 1),
+    Color.fromRGBO(128, 0, 0, 1),
+  ];
+  static final Color lightTextColor = Color(0xFF7F8489);
+  static final Color mainTextColor = Color(0xFFFDFDFD);
+  static final Color darkColor = Color(0xFF17181C);
+  static final Color progressShadowColor = Color(0xFF141415);
+  static final Color progressShadowColor2 = Color(0xFF485057);
+  static final Color progressBarTrackColor = Color(0xff1F2124);
 }
