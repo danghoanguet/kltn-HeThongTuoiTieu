@@ -2,18 +2,23 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:kltn/common/constants/dimens_constant.dart';
 
 import '../../../../common/constants/colors_constant.dart';
 
 class SetVPDItem extends StatefulWidget {
+  final min;
+  final max;
+  final soil;
   final temp;
   final humid;
-  final soil;
   const SetVPDItem({
     Key? key,
+    required this.min,
+    required this.max,
+    required this.soil,
     required this.temp,
     required this.humid,
-    required this.soil,
   }) : super(key: key);
 
   @override
@@ -181,9 +186,9 @@ class _SetVPDItemState extends State<SetVPDItem>
                         //     ),
                         //   ],
                         // ),
-                        SizedBox(
-                          height: 20,
-                        ),
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
                         Row(
                           children: [
                             Container(
@@ -214,7 +219,7 @@ class _SetVPDItemState extends State<SetVPDItem>
                             ),
                             Flexible(
                               child: Text(
-                                "Vapor Pressure Deficit (VPD) helps you identify the correct range of temperature and humidity to aim for in your grow space",
+                                "Vapor Pressure Deficit (VPD) helps you identify the correct range of temperature and humidity to aim for in your grow space. Ideal vpd range is ${DimensConstant.vpdMin}~${DimensConstant.vpdMax}(kPa)",
                                 style: GoogleFonts.aBeeZee(
                                   color: ColorsConstant.borderTextFieldColor,
                                   fontWeight: FontWeight.w500,
@@ -229,36 +234,36 @@ class _SetVPDItemState extends State<SetVPDItem>
                         ),
                         Row(
                           children: [
-                            // Container(
-                            //   padding: EdgeInsets.only(
-                            //     top: 5,
-                            //     bottom: 5,
-                            //   ),
-                            //   height: size.width * 0.12,
-                            //   width: size.width * 0.12,
-                            //   decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(12),
-                            //     border: Border.all(
-                            //       color: Colors.brown.withOpacity(0.9),
-                            //       width: 2,
-                            //     ),
-                            //     gradient: LinearGradient(
-                            //       begin: Alignment.topCenter,
-                            //       end: Alignment.bottomCenter,
-                            //       colors: ColorsConstant.borderColors,
-                            //     ),
-                            //   ),
-                            //   child: Image.asset(
-                            //     "assets/images/soil_threshold.png",
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
-                            // SizedBox(
-                            //   width: 15,
-                            // ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                top: 5,
+                                bottom: 5,
+                              ),
+                              height: size.width * 0.12,
+                              width: size.width * 0.12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Colors.blue.withOpacity(0.5),
+                                  width: 2,
+                                ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: ColorsConstant.borderColors,
+                                ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/temperature.png",
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             Flexible(
                               child: Text(
-                                "Threshold:\nTemperature: ${widget.temp}\u2103 Humid: ${widget.humid}% Soil: ${widget.soil}%",
+                                "Case 1: If vpd in range or vpd lower than vpd min, pump on if soil lower than soil threshold\nCase 2: If vpd greater than vpd max pump on",
                                 style: GoogleFonts.aBeeZee(
                                   color: ColorsConstant.borderTextFieldColor,
                                   fontWeight: FontWeight.w500,
@@ -273,36 +278,36 @@ class _SetVPDItemState extends State<SetVPDItem>
                         ),
                         Row(
                           children: [
-                            // Container(
-                            //   padding: EdgeInsets.only(
-                            //     top: 5,
-                            //     bottom: 5,
-                            //   ),
-                            //   height: size.width * 0.12,
-                            //   width: size.width * 0.12,
-                            //   decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(12),
-                            //     border: Border.all(
-                            //       color: Colors.brown.withOpacity(0.9),
-                            //       width: 2,
-                            //     ),
-                            //     gradient: LinearGradient(
-                            //       begin: Alignment.topCenter,
-                            //       end: Alignment.bottomCenter,
-                            //       colors: ColorsConstant.borderColors,
-                            //     ),
-                            //   ),
-                            //   child: Image.asset(
-                            //     "assets/images/soil_threshold.png",
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
-                            // SizedBox(
-                            //   width: 15,
-                            // ),
+                            Container(
+                              padding: EdgeInsets.only(
+                                top: 5,
+                                bottom: 5,
+                              ),
+                              height: size.width * 0.12,
+                              width: size.width * 0.12,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                  color: Colors.brown.withOpacity(0.9),
+                                  width: 2,
+                                ),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: ColorsConstant.borderColors,
+                                ),
+                              ),
+                              child: Image.asset(
+                                "assets/images/soil_threshold.png",
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 15,
+                            ),
                             Flexible(
                               child: Text(
-                                "VPD value now: ${calculateVPD(double.parse(widget.temp), double.parse(widget.humid)).toStringAsFixed(2)}",
+                                "VPD min: ${widget.min}(kPa)\nVPD max: ${widget.max}(kPa)\nSoil: ${widget.soil}%",
                                 style: GoogleFonts.aBeeZee(
                                   color: ColorsConstant.borderTextFieldColor,
                                   fontWeight: FontWeight.w500,

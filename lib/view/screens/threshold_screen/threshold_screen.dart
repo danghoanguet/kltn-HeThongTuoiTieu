@@ -3,12 +3,14 @@ import 'dart:math';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:kltn/view/screens/threshold_screen/components/warning_item.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 import '../../../common/constants/colors_constant.dart';
 import '../../../data/model/DHTModel.dart';
 import '../../../data/model/threshold_model.dart';
 import '../../widgets/label_item.dart';
 import '../../widgets/show_alert_dialog.dart';
+import 'components/set_vpd_item.dart';
 
 class ThresholdScreen extends StatefulWidget {
   const ThresholdScreen({Key? key}) : super(key: key);
@@ -23,8 +25,8 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
   Color? vpdColor = Colors.transparent;
   String? vpdStatus = "";
 
-  TextEditingController _nhietDoController = TextEditingController();
-  TextEditingController _doAmController = TextEditingController();
+  TextEditingController _vpdMinController = TextEditingController();
+  TextEditingController _vpdMaxController = TextEditingController();
   TextEditingController _doAmDatController = TextEditingController();
   double calculateVPD(double temp, double rh) {
     return ((610.7 * pow(10, (7.5 * temp / (237.3 + temp)))) /
@@ -34,8 +36,8 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
 
   @override
   void dispose() {
-    _nhietDoController.dispose();
-    _doAmController.dispose();
+    _vpdMinController.dispose();
+    _vpdMaxController.dispose();
     _doAmDatController.dispose();
     super.dispose();
   }
@@ -59,6 +61,9 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
 
   @override
   Widget build(BuildContext context) {
+    RangeValues _currentRangeValues = const RangeValues(0, 5);
+    SfRangeValues _values = SfRangeValues(40.0, 80.0);
+
     Size size = MediaQuery.of(context).size;
     final scaffold = ScaffoldMessenger.of(context);
     // print("threshold build run");
@@ -97,11 +102,10 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        WarningItem(),
+                        // WarningItem(),
                         SizedBox(
                           height: 20,
                         ),
-
                         LabelItem(
                           label: "SET THRESHOLD",
                           imageUrl: "assets/images/stat.png",
@@ -110,28 +114,56 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                         SizedBox(
                           height: 20,
                         ),
-                        // SetVPDItem(
-                        //   humid: _thresholdModel.humid,
-                        //   soil: _thresholdModel.soil,
-                        //   temp: _thresholdModel.temp,
-                        // ),
-                        // SizedBox(
-                        //   height: 20,
-                        // ),
-                        Row(
-                          children: [],
+                        SetVPDItem(
+                          temp: _thresholdModel.temp,
+                          humid: _thresholdModel.humid,
+                          max: _thresholdModel.vpdMax.toString(),
+                          soil: _thresholdModel.soil,
+                          min: _thresholdModel.vpdMin.toString(),
                         ),
                         SizedBox(
                           height: 20,
                         ),
+                        // SfRangeSlider(
+                        //   min: 0.0,
+                        //   max: 100.0,
+                        //   values: _values,
+                        //   interval: 20,
+                        //   showTicks: true,
+                        //   showLabels: true,
+                        //   enableTooltip: true,
+                        //   minorTicksPerInterval: 1,
+                        //   onChanged: (SfRangeValues values) {
+                        //     setState(() {
+                        //       _values = values;
+                        //     });
+                        //   },
+                        // ),
+                        // RangeSlider(
+                        //   values: _currentRangeValues,
+                        //   min: 0,
+                        //   max: 6,
+                        //   divisions: 5,
+                        //   labels: RangeLabels(
+                        //     _currentRangeValues.start.round().toString(),
+                        //     _currentRangeValues.end.round().toString(),
+                        //   ),
+                        //   onChanged: (RangeValues values) {
+                        //     setState(() {
+                        //       _currentRangeValues = values;
+                        //     });
+                        //   },
+                        // ),
+                        // TODO: Delete
                         Container(
                           margin: EdgeInsets.only(bottom: 10),
                           width: double.infinity,
                           child: TextField(
                             style: TextStyle(color: Colors.white),
                             onChanged: (_) => isValidated(),
-                            controller: _nhietDoController,
-                            keyboardType: TextInputType.number,
+                            controller: _vpdMinController,
+                            keyboardType:
+                                TextInputType.numberWithOptions(decimal: true),
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
                                 // hintText: 'Temperature(\u2103)',
@@ -140,7 +172,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                                 //   fontWeight: FontWeight.bold,
                                 //   //fontSize: 20,
                                 // ),
-                                labelText: 'TEMPERATURE',
+                                labelText: 'VPD Min',
                                 labelStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -172,11 +204,12 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                           child: TextField(
                             style: TextStyle(color: Colors.white),
                             onChanged: (_) => isValidated(),
-                            controller: _doAmController,
-                            keyboardType: TextInputType.number,
+                            controller: _vpdMaxController,
+                            keyboardType:
+                                TextInputType.numberWithOptions(decimal: true),
                             textInputAction: TextInputAction.next,
                             decoration: InputDecoration(
-                                labelText: 'HUMID',
+                                labelText: 'VPD Max',
                                 labelStyle: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -203,6 +236,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                         SizedBox(
                           height: 10,
                         ),
+                        //TODO:end
                         Container(
                           margin: EdgeInsets.only(bottom: 10),
                           width: double.infinity,
@@ -277,13 +311,17 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                                 final vpd = calculateVPD(
                                     double.parse(_dHTModel.temp),
                                     double.parse(_dHTModel.humid));
-                                if (0.8 <= vpd && vpd <= 1.0) {
+                                if (double.parse(_thresholdModel.vpdMin) <=
+                                        vpd &&
+                                    vpd <=
+                                        double.parse(_thresholdModel.vpdMax)) {
                                   vpdColor = Colors.green;
                                   vpdStatus = "Vegetative";
-                                } else if (vpd > 1 && vpd <= 1.24) {
-                                  vpdColor = Colors.yellowAccent.shade700;
-                                  vpdStatus = "Flowering";
-                                } else if (vpd > 1.24) {
+                                  // } else if (vpd > 1 && vpd <= 1.24) {
+                                  //   vpdColor = Colors.yellowAccent.shade700;
+                                  //   vpdStatus = "Flowering";
+                                } else if (vpd >
+                                    double.parse(_thresholdModel.vpdMax)) {
                                   vpdColor = Colors.deepPurpleAccent;
                                   vpdStatus = "Dry/Stress";
                                 } else {
@@ -312,7 +350,7 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
                                         height: 5,
                                       ),
                                       Text(
-                                        "Status:" + vpdStatus!,
+                                        "Status: " + vpdStatus!,
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w500,
@@ -528,34 +566,31 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
 
   void _onSave(ScaffoldMessengerState scaffold) async {
     print(
-        "${_nhietDoController.text == "" ? 0 : _nhietDoController.text}\n${_doAmController.text == "" ? 0 : _doAmController.text}\n${_doAmDatController.text == "" ? 0 : _doAmDatController.text}\n");
+        "${_vpdMinController.text == "" ? 0 : _vpdMinController.text}\n${_vpdMaxController.text == "" ? 0 : _vpdMaxController.text}\n${_doAmDatController.text == "" ? 0 : _doAmDatController.text}\n");
     if (await showAlertDialog(context,
             title: 'Are you sure?',
             content:
-                'Temperature: ${_nhietDoController.text.toString()}\u2103\nHumid threshold: ${_doAmController.text.toString()}%\nSoil threshold: ${_doAmDatController.text.toString()}%',
+                'Vpd Min: ${_vpdMinController.text.toString()}(kPa)\nVPD Max: ${_vpdMaxController.text.toString()}(kPa)\nSoil threshold: ${_doAmDatController.text.toString()}%',
             defaultActionText: 'OK',
             cancelActionText: "NO") ==
         true) {
       DatabaseReference _refThreshold =
           FirebaseDatabase.instance.ref("Threshold");
-      await _refThreshold.set({
-        "HUM":
-            _doAmController.text == "0" || int.parse(_doAmController.text) == 0
-                ? "1"
-                : _doAmController.text.toString(),
-        "TEMP": _nhietDoController.text == "0" ||
-                int.parse(_nhietDoController.text) == 0
-            ? "1"
-            : _nhietDoController.text.toString(),
+      String vpdMaxFixed = _vpdMaxController.text.replaceFirst(",", ".");
+      String vpdMinFixed = _vpdMinController.text.replaceFirst(",", ".");
+
+      await _refThreshold.update({
+        "vpdMax": vpdMaxFixed,
+        "vpdMin": vpdMinFixed,
         "SOIL": _doAmDatController.text == "0" ||
                 int.parse(_doAmDatController.text) == 0
             ? "1"
             : _doAmDatController.text.toString()
       });
       setState(() {
-        _nhietDoController.clear();
+        _vpdMinController.clear();
         _doAmDatController.clear();
-        _doAmController.clear();
+        _vpdMaxController.clear();
         _isValidate = false;
       });
       scaffold.showSnackBar(SnackBar(
@@ -571,9 +606,9 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
       ));
     } else {
       setState(() {
-        _nhietDoController.clear();
+        _vpdMinController.clear();
         _doAmDatController.clear();
-        _doAmController.clear();
+        _vpdMaxController.clear();
         _isValidate = false;
       });
     }
@@ -582,8 +617,8 @@ class _ThresholdScreenState extends State<ThresholdScreen> {
 
   void isValidated() {
     setState(() {
-      _isValidate = _nhietDoController.text.isNotEmpty &&
-          _doAmController.text.isNotEmpty &&
+      _isValidate = _vpdMinController.text.isNotEmpty &&
+          _vpdMaxController.text.isNotEmpty &&
           _doAmDatController.text.isNotEmpty;
     });
   }

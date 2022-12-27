@@ -13,6 +13,8 @@ class DimensConstant {
   static const double buttonHeight = 43;
   static const double kDefaultPadding = 20.0;
   static const int numberOfX = 15;
+  static const double vpdMin = 0.5;
+  static const double vpdMax = 1.2;
 
   static void init(context) {
     statusBarHeight = MediaQuery.of(context).padding.top;

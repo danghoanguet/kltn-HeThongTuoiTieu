@@ -321,40 +321,6 @@ class _buildThresholdCard extends StatelessWidget {
           ),
           //TODO:
           Container(
-            margin: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
-            decoration: BoxDecoration(
-                //color: ColorsConstant.background2,
-                borderRadius: BorderRadius.circular(12)),
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(left: 5, right: 10, top: 5),
-                  height: size.width * 0.1,
-                  width: size.width * 0.07,
-                  child: SvgPicture.asset("assets/icons/icon_2.svg"),
-                ),
-                Text(
-                  "TEMP ",
-                  style: GoogleFonts.aBeeZee(
-                    color: ColorsConstant.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
-                Flexible(
-                  child: Text(
-                    "${_thresholdModel.temp}" + "\u2103",
-                    style: GoogleFonts.aBeeZee(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
             margin: EdgeInsets.only(top: 5, left: 5, right: 5),
             decoration: BoxDecoration(
                 //color: ColorsConstant.background2,
@@ -389,9 +355,9 @@ class _buildThresholdCard extends StatelessWidget {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 10),
+            margin: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 5),
             decoration: BoxDecoration(
-                // color: ColorsConstant.background2,
+                //color: ColorsConstant.background2,
                 borderRadius: BorderRadius.circular(12)),
             child: Row(
               children: [
@@ -402,20 +368,55 @@ class _buildThresholdCard extends StatelessWidget {
                   child: SvgPicture.asset("assets/icons/icon_3.svg"),
                 ),
                 Text(
-                  "HUM ",
+                  "VPDmin ",
                   style: GoogleFonts.aBeeZee(
                     color: ColorsConstant.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 15,
+                    fontSize: 13,
                   ),
                 ),
                 Flexible(
                   child: Text(
-                    "${_thresholdModel.humid}%",
+                    "${_thresholdModel.vpdMin}",
+                    style: GoogleFonts.aBeeZee(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.only(top: 10, left: 5, right: 5, bottom: 10),
+            decoration: BoxDecoration(
+                // color: ColorsConstant.background2,
+                borderRadius: BorderRadius.circular(12)),
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 5, right: 10, top: 5),
+                  height: size.width * 0.1,
+                  width: size.width * 0.07,
+                  child: SvgPicture.asset("assets/icons/icon_2.svg"),
+                ),
+                Text(
+                  "VPDmax ",
+                  style: GoogleFonts.aBeeZee(
+                    color: ColorsConstant.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+                Flexible(
+                  child: Text(
+                    "${_thresholdModel.vpdMax}",
                     style: GoogleFonts.aBeeZee(
                       color: ColorsConstant.white,
                       fontWeight: FontWeight.bold,
-                      fontSize: 15,
+                      fontSize: 14,
                     ),
                   ),
                 ),

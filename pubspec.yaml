@@ -42,9 +42,10 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   gradient_progress_bar: ^1.0.4
   fl_chart: ^0.55.2
-  syncfusion_flutter_charts: ^19.2.47
+  syncfusion_flutter_charts: ^20.3.58
   intl: ^0.17.0
   cloud_firestore: 4.1.0
+  syncfusion_flutter_sliders: ^20.3.58
 
 
 #  toggle_switch: ^2.0.1
